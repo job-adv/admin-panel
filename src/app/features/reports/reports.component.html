@@ -1,0 +1,36 @@
+<p-toast />
+<div class="px-4 py-2 bg-white my-2">
+    <h2><i style="font-size: 1.5rem" class="pi pi-flag mr-2"></i>User reports list:</h2>
+    <p-table
+        [value]="reports"
+        [paginator]="true"
+        [rows]="10"
+        [showCurrentPageReport]="true"
+        [tableStyle]="{ 'min-width': '50rem' }"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        styleClass="p-datatable-striped" 
+        (onPage)="pageChange($event)"
+        [rowsPerPageOptions]="[10, 25, 50]"
+    >
+    <ng-template pTemplate="header">
+        <tr>
+            <th>ID</th>
+            <th>DESCRIPTION</th>
+            <th>USER ID</th>
+            <th>REPORTED USER ID</th>
+            <th>ACTIONS</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-report>
+        <tr>
+            <td>{{ report.reportID }}</td>
+            <td>{{ report.description }}</td>
+            <td>{{ report.user_id }}</td>
+            <td>{{ report.reported_id }}</td>
+            <td>
+                <p-button icon="pi pi-trash" severity="danger" (onClick)="deleteReport(report.reportID)"></p-button>
+            </td>
+        </tr>
+    </ng-template>
+    </p-table>
+</div>

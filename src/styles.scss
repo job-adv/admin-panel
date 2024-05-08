@@ -1,1 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+@import "primeng/resources/themes/aura-light-noir/theme.css";
+@import "primeng/resources/primeng.css";
+@import "primeflex/primeflex.css";
+@import "primeicons/primeicons.css";
+
+:root {
+    --primary-color: #020617;
+}
+
+body {
+    background-color: #f1f2f6;
+    margin: 0;
+    padding: 0;
+}
