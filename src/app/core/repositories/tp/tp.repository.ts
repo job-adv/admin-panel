@@ -14,4 +14,8 @@ export class TpRepository {
     create(condition: TpCreationRequest): Observable<any> {
         return this.http.post('/userCondition/add', condition);
     }
+
+    delete(id: string): Observable<any> {
+        return this.http.delete('/userCondition/delete/' + id);
+    }
 }

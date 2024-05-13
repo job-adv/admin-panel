@@ -2,12 +2,13 @@ import { Component } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { AuthenticationService } from '../../core/services/authentication/authentication.service';
 import { LoginRequest } from '../../core/models/user/login_request';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  providers: []
+  providers: [ MessageService ]
 })
 
 export class LoginComponent {

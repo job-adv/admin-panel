@@ -19,6 +19,10 @@ export class UserRepository {
     return this.httpService.get('/user/viewAll', false);
   }
 
+  delete(id: string) {
+    return this.httpService.delete('/user/delete/' + id);
+  }
+
   verifyUser(id: string): Observable<any> {
     return this.httpService.patch('/user/accept/' + id, {});
   }

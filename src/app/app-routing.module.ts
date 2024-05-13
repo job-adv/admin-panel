@@ -10,6 +10,7 @@ import { CategoriesComponent } from './features/categories/categories.component'
 import { SuggestionsComponent } from './features/suggestions/suggestions.component';
 import { ReportsComponent } from './features/reports/reports.component';
 import { TpComponent } from './features/tp/tp.component';
+import { ServicesComponent } from './features/services/services.component';
 
 const routes: Routes = [
   {
@@ -30,6 +31,11 @@ const routes: Routes = [
   {
     path: 'posts',
     component: PostsComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'services',
+    component: ServicesComponent,
     canActivate: [AuthGuard],
   },
   {

@@ -14,4 +14,8 @@ export class TpService {
     create(request: TpCreationRequest): Observable<any> {
         return this.tp.create(request);
     }
+
+    delete(id: string): Observable<any> {
+        return this.tp.delete(id);
+    }
 }

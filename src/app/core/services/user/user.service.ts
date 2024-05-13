@@ -10,6 +10,10 @@ export class UserService {
         return this.user.getAllUsers();
     }
 
+    delete(id: string) {
+        return this.user.delete(id);
+    }
+
     verifyUser(id: string): Observable<any> {
         return this.user.verifyUser(id);
     }

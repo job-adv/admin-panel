@@ -20,6 +20,11 @@ import { ReportService } from './services/report/report.service';
 import { ReportRepository } from './repositories/report/report.repository';
 import { TpService } from './services/tp/tp.service';
 import { TpRepository } from './repositories/tp/tp.repository';
+import { NotificationService } from './services/notification/notification.service';
+import { NotificationRepository } from './repositories/notification/notification.repository';
+import { MessageService } from 'primeng/api';
+import { UserServiceService } from './services/service/service.service';
+import { ServiceRepository } from './repositories/service/service.repository';
 
 @NgModule({
   declarations: [
@@ -42,6 +47,9 @@ import { TpRepository } from './repositories/tp/tp.repository';
     SuggestionService,
     ReportService,
     TpService,
+    NotificationService,
+    MessageService,
+    UserServiceService,
 
     UserRepository,
     PostRepository,
@@ -49,6 +57,8 @@ import { TpRepository } from './repositories/tp/tp.repository';
     SuggestionRepository,
     ReportRepository,
     TpRepository,
+    NotificationRepository,
+    ServiceRepository,
   ],
   imports: [
     CommonModule

@@ -33,6 +33,8 @@ import {RippleModule} from "primeng/ripple";
 import {StyleClassModule} from "primeng/styleclass";
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { TopbarComponent } from './topbar/topbar.component';
+import { ReactiveFormsModule } from "@angular/forms";
+import { InputTextareaModule } from 'primeng/inputtextarea';
 
 @NgModule({
     imports: [
@@ -56,6 +58,7 @@ import { TopbarComponent } from './topbar/topbar.component';
         ContextMenuModule,
         ConfirmDialogModule,
         ProgressBarModule,
+        ReactiveFormsModule,
         TagModule,
         CalendarModule,
         FieldsetModule,
@@ -70,6 +73,7 @@ import { TopbarComponent } from './topbar/topbar.component';
         ToolbarModule,
         ImageModule,
         RippleModule,
+        InputTextareaModule,
         StyleClassModule
     ],
   declarations: [

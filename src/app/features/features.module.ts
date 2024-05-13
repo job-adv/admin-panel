@@ -29,6 +29,7 @@ import { BadgeModule } from 'primeng/badge';
 import { ToastModule } from 'primeng/toast';
 import { DialogModule } from 'primeng/dialog';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { ServicesComponent } from './services/services.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
     SuggestionsComponent,
     ReportsComponent,
     TpComponent,
+    ServicesComponent,
   ],
   imports: [
     CommonModule,

@@ -1,3 +1,22 @@
+<p-toast />
+<p-dialog 
+    header="New notification" 
+    [modal]="true"
+    [(visible)]="visible" >
+    <form [formGroup]="this.newNotification">
+        <textarea
+            placeholder="Content"
+            rows="5"
+            cols="30" 
+            pInputTextarea 
+            formControlName="content">
+        </textarea>
+        <div class="flex justify-content-between mt-4">
+            <p-button label="Cancel" severity="danger" icon="pi pi-times" (onClick)="visible = false;"></p-button>
+            <p-button label="Confirm" severity="success" icon="pi pi-check" (onClick)="createNotification()"></p-button>
+        </div>
+    </form>
+</p-dialog>
 <p-menubar [model]="items" styleClass="m-0">
     <ng-template pTemplate="start">
         <div class="flex justify-content-center align-items-center">

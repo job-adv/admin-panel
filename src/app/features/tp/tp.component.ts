@@ -3,6 +3,7 @@ import { TpResponse } from '../../core/models/tp/tp_response';
 import { MenuItem, MessageService } from 'primeng/api';
 import { TpService } from '../../core/services/tp/tp.service';
 import { TpCreationRequest } from '../../core/models/tp/tp_creation_request';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-tp',
@@ -12,12 +13,15 @@ import { TpCreationRequest } from '../../core/models/tp/tp_creation_request';
 })
 export class TpComponent {
   protected usageCondtions: TpResponse[] = [] as TpResponse[];
-  first = 0;
-  rows = 10;
-  searchValue: string | undefined;
-  actions: MenuItem[] = [];
+  protected first = 0;
+  protected rows = 10;
+  protected searchValue: string | undefined;
+  protected actions: MenuItem[] = [];
+
   public visible: boolean = false;
-  public content: string = '';
+  public newCondition = new FormGroup({
+    content: new FormControl(),
+  });
   
   constructor(public tp: TpService, private messageService: MessageService) {}
 
@@ -38,20 +42,31 @@ export class TpComponent {
 
   createCondition() {
     let newCondition: TpCreationRequest = {
-      content: this.content
+      content: this.newCondition.value.content,
     };
 
-    console.log(newCondition);
-
-    /*this.tp.create(newCondition).subscribe({
+    this.tp.create(newCondition).subscribe({
       next: () => {
         this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Condition created' });
         this.getUc();
+        this.visible = false;
       },
-      error: (e) => {
+      error: () => {
         this.messageService.add({ severity: 'error', summary: 'Error', detail: 'An error has occured' });
       }
-    })*/
+    });
+  }
+
+  deleteCondition(id: string) {
+    this.tp.delete(id).subscribe({
+      next: () => {
+        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Condition deleted' });
+        this.getUc();
+      },
+      error: () => {
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'An error has occured' });
+      }
+    });
   }
 
     next() {

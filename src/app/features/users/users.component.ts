@@ -25,6 +25,7 @@ export class UsersComponent {
       next:(d) => {
         this.isLoading = false;
         this.users = d.data;
+        this.unverifiedUserCount = 0;
         this.users.forEach((user) => {
           if(user.verifier == 0) {
             this.unverifiedUserCount++;
@@ -34,6 +35,18 @@ export class UsersComponent {
       error:(e) => {
         this.isLoading = false;
         throw e;
+      }
+    })
+  }
+
+  deleteUser(id: string) {
+    this.user.delete(id).subscribe({
+      next: () => {
+        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'User deleted' });
+        this.getUsers();
+      },
+      error: (e) => {
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'An error has occured' });
       }
     })
   }

@@ -3,14 +3,15 @@
     header="New condition" 
     [modal]="true"
     [(visible)]="visible" >
-    <form>
-        <textarea 
+    <form [formGroup]="this.newCondition">
+        <textarea
+            placeholder="Content"
             rows="5"
             cols="30" 
             pInputTextarea 
-            [(ngModel)]="this.content">
+            formControlName="content">
         </textarea>
-        <div class="flex">
+        <div class="flex justify-content-between mt-4">
             <p-button label="Cancel" severity="danger" icon="pi pi-times" (onClick)="visible = false;"></p-button>
             <p-button label="Confirm" severity="success" icon="pi pi-check" (onClick)="createCondition()"></p-button>
         </div>
@@ -40,8 +41,7 @@
         <tr>
             <td>{{ condition.content }}</td>
             <td>
-                <p-button icon="pi pi-pencil" severity="primary" styleClass="mr-2"></p-button>
-                <p-button icon="pi pi-trash" severity="danger"></p-button>
+                <p-button icon="pi pi-trash" severity="danger" (onClick)="deleteCondition(condition.documentID)"></p-button>
             </td>
         </tr>
     </ng-template>
