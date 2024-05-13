@@ -25,7 +25,7 @@ export class HomeComponent {
     getReports() {
         this.report.get().subscribe({
           next:(d) => {
-            this.reportsCount = d.body.data.length;
+            this.reportsCount = d.body.data2.length;
           },
           error:(e) => {
             throw e;
