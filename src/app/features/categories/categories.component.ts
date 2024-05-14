@@ -104,7 +104,7 @@ export class CategoriesComponent {
   deleteCategory(id: number) {
     this.category.delete(id).subscribe({
       next: () => {
-        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Category' });
+        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Category deleted' });
         this.getCategories();
       },
       error: () => {

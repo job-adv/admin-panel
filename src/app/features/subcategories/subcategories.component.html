@@ -1,0 +1,101 @@
+<p-toast />
+<p-dialog 
+    header="New subcategory" 
+    [modal]="true"
+    [(visible)]="visible" >
+    <form [formGroup]="this.newSubcategory">
+        <div class="my-4">
+            <p-floatLabel>
+                <input pInputText id="name"formControlName="name"/>
+                <label for="name">Subcategory name</label>
+            </p-floatLabel>
+        </div>
+        <div class="my-4">
+            <p-floatLabel>
+                <input pInputText id="picture" formControlName="picture"/>
+                <label for="picture">Subcategory picture link</label>
+            </p-floatLabel>
+        </div>
+        <div class="my-4">
+            <p-floatLabel>
+                <input pInputText id="icon" formControlName="cat_id"/>
+                <label for="icon">Category id</label>
+            </p-floatLabel>
+        </div>
+        
+        
+        <div class="flex justify-content-between mt-4">
+            <p-button label="Cancel" severity="danger" icon="pi pi-times" (onClick)="visible = false;"></p-button>
+            <p-button label="Confirm" severity="success" icon="pi pi-check" (onClick)="createCategory()"></p-button>
+        </div>
+    </form>
+</p-dialog>
+
+<p-dialog 
+    header="Edit subcategory" 
+    [modal]="true"
+    [(visible)]="editVisible" >
+    <form [formGroup]="this.editSubcategory">
+        <div class="my-4">
+            <p-floatLabel>
+                <input pInputText id="name"formControlName="name"/>
+                <label for="name">Subcategory name</label>
+            </p-floatLabel>
+        </div>
+        <div class="my-4">
+            <p-floatLabel>
+                <input pInputText id="picture" formControlName="picture"/>
+                <label for="picture">Subcategory picture link</label>
+            </p-floatLabel>
+        </div>
+        <div class="my-4">
+            <p-floatLabel>
+                <input pInputText id="icon" formControlName="cat_id"/>
+                <label for="icon">Category id</label>
+            </p-floatLabel>
+        </div>
+        
+        
+        <div class="flex justify-content-between mt-4">
+            <p-button label="Cancel" severity="danger" icon="pi pi-times" (onClick)="editVisible = false;"></p-button>
+            <p-button label="Confirm" severity="success" icon="pi pi-check" (onClick)="saveCategory()"></p-button>
+        </div>
+    </form>
+</p-dialog>
+<div class="px-4 py-2 bg-white my-2">
+    <h2><i style="font-size: 1.5rem" class="pi pi-box mr-2"></i>Subategories list:</h2>
+    <p-button label="New Subcategory" severity="success" icon="pi pi-plus" (onClick)="displayNewDialog()" styleClass="my-4"></p-button>
+    <p-table
+        [value]="subcategories"
+        [paginator]="true"
+        [rows]="5"
+        [showCurrentPageReport]="true"
+        [tableStyle]="{ 'min-width': '50rem' }"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        styleClass="p-datatable-striped" 
+        (onPage)="pageChange($event)"
+        [rowsPerPageOptions]="[10, 25, 50]"
+    >
+    <ng-template pTemplate="header">
+        <tr>
+            <th>ID</th>
+            <th>NAME</th>
+            <th>PARENT CATEGORY</th>
+            <th>PICTURE</th>
+            <th>ACTIONS</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-subcategory>
+        <tr>
+            <td>{{ subcategory.subCategory_id }}</td>
+            <td>{{ subcategory.subCategory_name }}</td>
+            <td>{{ subcategory.category_name }}</td>
+            <td><img class="image-container" src={{subcategory.subCategory_picture}} width="100" /></td>         
+            <td>
+                <p-button icon="pi pi-pencil" severity="primary" styleClass="mr-2" (onClick)="edit(subcategory)"></p-button>
+                <p-button icon="pi pi-trash" severity="danger" (onClick)="deleteCategory(subcategory.subcategory_id)"></p-button>
+            </td>
+        </tr>
+    </ng-template>
+    </p-table>
+</div>

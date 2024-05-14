@@ -11,6 +11,7 @@ import { SuggestionsComponent } from './features/suggestions/suggestions.compone
 import { ReportsComponent } from './features/reports/reports.component';
 import { TpComponent } from './features/tp/tp.component';
 import { ServicesComponent } from './features/services/services.component';
+import { SubcategoriesComponent } from './features/subcategories/subcategories.component';
 
 const routes: Routes = [
   {
@@ -46,6 +47,11 @@ const routes: Routes = [
   {
     path: 'categories',
     component: CategoriesComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'subcategories',
+    component: SubcategoriesComponent,
     canActivate: [AuthGuard],
   },
   {

@@ -31,6 +31,8 @@ import { DialogModule } from 'primeng/dialog';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ServicesComponent } from './services/services.component';
 import { FloatLabelModule } from 'primeng/floatlabel';
+import { SubcategoriesComponent } from './subcategories/subcategories.component';
+import { DropdownModule } from 'primeng/dropdown';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,7 @@ import { FloatLabelModule } from 'primeng/floatlabel';
     ReportsComponent,
     TpComponent,
     ServicesComponent,
+    SubcategoriesComponent,
   ],
   imports: [
     CommonModule,
@@ -53,6 +56,7 @@ import { FloatLabelModule } from 'primeng/floatlabel';
     InputTextModule,
     SplitButtonModule,
     BadgeModule,
+    DropdownModule,
     PasswordModule,
     FloatLabelModule,
     CheckboxModule,

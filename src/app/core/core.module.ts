@@ -25,6 +25,8 @@ import { NotificationRepository } from './repositories/notification/notification
 import { MessageService } from 'primeng/api';
 import { UserServiceService } from './services/service/service.service';
 import { ServiceRepository } from './repositories/service/service.repository';
+import { SubcategoryService } from './services/subcategory/subcategory.service';
+import { SubcategoryRepository } from './repositories/subcategory/subcategory.repository';
 
 @NgModule({
   declarations: [
@@ -50,6 +52,7 @@ import { ServiceRepository } from './repositories/service/service.repository';
     NotificationService,
     MessageService,
     UserServiceService,
+    SubcategoryService,
 
     UserRepository,
     PostRepository,
@@ -59,6 +62,7 @@ import { ServiceRepository } from './repositories/service/service.repository';
     TpRepository,
     NotificationRepository,
     ServiceRepository,
+    SubcategoryRepository,
   ],
   imports: [
     CommonModule
