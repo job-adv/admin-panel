@@ -1,30 +1,30 @@
 <div class="px-4 pt-2 pb-4 bg-white my-2 ">
     <h2><i style="font-size: 1.5rem" class="pi pi-chart-bar mr-2"></i>General Statistics</h2>
-<div class="flex">
-    <p-card styleClass="m-4">
-        <i style="font-size: 2.5rem" class="pi pi-users mr-2"></i>
-        <h4>{{usersCount}}</h4>
-        <h3>Users</h3>
-    </p-card>
-    <p-card styleClass="m-4">
-        <i style="font-size: 2.5rem" class="pi pi-pencil mr-2"></i>
-        <h4>{{postsCount}}</h4>
-        <h3>Posts</h3>
-    </p-card>
-    <p-card styleClass="m-4">
-        <i style="font-size: 2.5rem" class="pi pi-briefcase mr-2"></i>
-        <h4>{{servicesCount}}</h4>
-        <h3>Services</h3>
-    </p-card>
-    <p-card styleClass="m-4">
-        <i style="font-size: 2.5rem" class="pi pi-cog mr-2"></i>
-        <h4>{{suggestionsCount}}</h4>
-        <h3>User suggestions</h3>
-    </p-card>
-    <p-card styleClass="m-4">
-        <i style="font-size: 2.5rem" class="pi pi-flag mr-2"></i>
-        <h4>{{reportsCount}}</h4>
-        <h3>Reports</h3>
-    </p-card>
-</div>
+    <div class="md:flex sm:flex-row">
+        <p-card styleClass="m-4 align-items-center">
+            <i style="font-size: 2.5rem" class="pi pi-users"></i>
+            <h4 class="text-center">{{usersCount}}</h4>
+            <h3 class="text-center">Users</h3>
+        </p-card>
+        <p-card styleClass="m-4 align-items-center">
+            <i style="font-size: 2.5rem" class="pi pi-pencil"></i>
+            <h4 class="text-center">{{postsCount}}</h4>
+            <h3 class="text-center">Posts</h3>
+        </p-card>
+        <p-card styleClass="m-4 align-items-center">
+            <i style="font-size: 2.5rem" class="pi pi-briefcase"></i>
+            <h4 class="text-center">{{servicesCount}}</h4>
+            <h3 class="text-center">Services</h3>
+        </p-card>
+        <p-card styleClass="m-4 align-items-center">
+            <i style="font-size: 2.5rem" class="pi pi-cog"></i>
+            <h4 class="text-center">{{suggestionsCount}}</h4>
+            <h3 class="text-center">User suggestions</h3>
+        </p-card>
+        <p-card styleClass="m-4 align-items-center">
+            <i style="font-size: 2.5rem" class="pi pi-flag"></i>
+            <h4 class="text-center">{{reportsCount}}</h4>
+            <h3 class="text-center">Reports</h3>
+        </p-card>
+    </div>
 </div>

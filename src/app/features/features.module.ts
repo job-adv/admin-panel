@@ -30,6 +30,7 @@ import { ToastModule } from 'primeng/toast';
 import { DialogModule } from 'primeng/dialog';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ServicesComponent } from './services/services.component';
+import { FloatLabelModule } from 'primeng/floatlabel';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { ServicesComponent } from './services/services.component';
     SplitButtonModule,
     BadgeModule,
     PasswordModule,
+    FloatLabelModule,
     CheckboxModule,
     ProgressSpinnerModule,
     DividerModule,

@@ -1,10 +1,74 @@
+<p-toast />
+<p-dialog 
+    header="New category" 
+    [modal]="true"
+    [(visible)]="visible" >
+    <form [formGroup]="this.newCategory">
+        <div class="my-4">
+            <p-floatLabel>
+                <input pInputText id="name"formControlName="name"/>
+                <label for="name">Category name</label>
+            </p-floatLabel>
+        </div>
+        <div class="my-4">
+            <p-floatLabel>
+                <input pInputText id="picture" formControlName="picture"/>
+                <label for="picture">Category picture link</label>
+            </p-floatLabel>
+        </div>
+        <div class="my-4">
+            <p-floatLabel>
+                <input pInputText id="icon" formControlName="icon"/>
+                <label for="icon">Category icon link</label>
+            </p-floatLabel>
+        </div>
+        
+        
+        <div class="flex justify-content-between mt-4">
+            <p-button label="Cancel" severity="danger" icon="pi pi-times" (onClick)="visible = false;"></p-button>
+            <p-button label="Confirm" severity="success" icon="pi pi-check" (onClick)="createCategory()"></p-button>
+        </div>
+    </form>
+</p-dialog>
+
+<p-dialog 
+    header="Edit category" 
+    [modal]="true"
+    [(visible)]="editVisible" >
+    <form [formGroup]="this.editCategory">
+        <div class="my-4">
+            <p-floatLabel>
+                <input pInputText id="name"formControlName="name"/>
+                <label for="name">Category name</label>
+            </p-floatLabel>
+        </div>
+        <div class="my-4">
+            <p-floatLabel>
+                <input pInputText id="picture" formControlName="picture"/>
+                <label for="picture">Category picture link</label>
+            </p-floatLabel>
+        </div>
+        <div class="my-4">
+            <p-floatLabel>
+                <input pInputText id="icon" formControlName="icon"/>
+                <label for="icon">Category icon link</label>
+            </p-floatLabel>
+        </div>
+        
+        
+        <div class="flex justify-content-between mt-4">
+            <p-button label="Cancel" severity="danger" icon="pi pi-times" (onClick)="editVisible = false;"></p-button>
+            <p-button label="Confirm" severity="success" icon="pi pi-check" (onClick)="saveCategory()"></p-button>
+        </div>
+    </form>
+</p-dialog>
 <div class="px-4 py-2 bg-white my-2">
     <h2><i style="font-size: 1.5rem" class="pi pi-box mr-2"></i>Categories list:</h2>
-    <p-button label="New category" severity="success" icon="pi pi-plus"></p-button>
+    <p-button label="New category" severity="success" icon="pi pi-plus" (onClick)="displayNewDialog()" styleClass="my-4"></p-button>
     <p-table
         [value]="categories"
         [paginator]="true"
-        [rows]="10"
+        [rows]="5"
         [showCurrentPageReport]="true"
         [tableStyle]="{ 'min-width': '50rem' }"
         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
@@ -25,11 +89,11 @@
         <tr>
             <td>{{ category.category_id }}</td>
             <td>{{ category.category_name }}</td>
-            <td><img src={{category.category_picture}} width="100" class="shadow-4" /></td>
-            <td><img src={{category.category_icon}} width="100" class="shadow-4" /></td>
+            <td><img class="image-container" src={{category.category_picture}} width="100" /></td>
+            <td><img class="image-container" src={{category.category_icon}} width="100" /></td>              
             <td>
-                <p-button icon="pi pi-pencil" severity="primary" styleClass="mr-2"></p-button>
-                <p-button icon="pi pi-trash" severity="danger"></p-button>
+                <p-button icon="pi pi-pencil" severity="primary" styleClass="mr-2" (onClick)="edit(category)"></p-button>
+                <p-button icon="pi pi-trash" severity="danger" (onClick)="deleteCategory(category.category_id)"></p-button>
             </td>
         </tr>
     </ng-template>

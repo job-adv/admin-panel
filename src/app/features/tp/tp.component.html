@@ -19,7 +19,7 @@
 </p-dialog>
 <div class="px-4 py-2 bg-white my-2">
     <h2><i style="font-size: 1.5rem" class="pi pi-file mr-2"></i>Usage conditions list:</h2>
-    <p-button label="New condition" severity="success" icon="pi pi-plus" (onClick)="showDialog()"></p-button>
+    <p-button label="New condition" severity="success" icon="pi pi-plus" (onClick)="showDialog()" styleClass="my-4"></p-button>
     <p-table
         [value]="usageCondtions"
         [paginator]="true"
