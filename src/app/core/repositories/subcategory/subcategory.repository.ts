@@ -21,6 +21,6 @@ export class SubcategoryRepository {
     }
 
     public delete(id: number): Observable<any> {
-        return this.http.delete('/subcategory/delete/' + id);
+        return this.http.delete('/subCategory/delete/' + id);
     }
 }

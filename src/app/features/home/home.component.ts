@@ -16,6 +16,11 @@ export class HomeComponent {
     public usersCount: number = 0;
     public suggestionsCount: number = 0;
     public servicesCount: number = 0;
+    public professionalCount: number = 0;
+    public customerCount: number = 0;
+
+    protected data: any;
+    protected options: any;
 
     constructor(
         public post: PostService,
@@ -51,6 +56,39 @@ export class HomeComponent {
         this.user.get().subscribe({
           next:(d) => {
             this.usersCount = d.data.length;
+            this.professionalCount = 0;
+            this.customerCount = 0;
+            d.data.forEach((element: any) => {
+              if(element.role == 'professional') {
+                this.professionalCount++;
+              } else {
+                this.customerCount++;
+              }
+            });
+            const documentStyle = getComputedStyle(document.documentElement);
+            const textColor = documentStyle.getPropertyValue('--text-color');
+
+            this.data = {
+                labels: ['Customers', 'Professionals'],
+                datasets: [
+                    {
+                        data: [this.customerCount, this.professionalCount],
+                        backgroundColor: [documentStyle.getPropertyValue('--blue-500'), documentStyle.getPropertyValue('--yellow-500'), documentStyle.getPropertyValue('--green-500')],
+                        hoverBackgroundColor: [documentStyle.getPropertyValue('--blue-400'), documentStyle.getPropertyValue('--yellow-400'), documentStyle.getPropertyValue('--green-400')]
+                    }
+                ]
+            };
+
+            this.options = {
+                plugins: {
+                    legend: {
+                        labels: {
+                            usePointStyle: true,
+                            color: textColor
+                        }
+                    }
+                }
+            };
           },
           error:(e) => {
             throw e;

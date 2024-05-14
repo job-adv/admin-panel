@@ -5,6 +5,8 @@ import { SubcategoryResponse } from '../../core/models/subcategory/subcategory_r
 import { SubcategoryService } from '../../core/services/subcategory/subcategory.service';
 import { SubcategoryUpdateRequest } from '../../core/models/subcategory/subcategory_update_request';
 import { SubcategoryCreationRequest } from '../../core/models/subcategory/subcategory_creation_request';
+import { CategoryResponse } from '../../core/models/category/category_response';
+import { CategoryService } from '../../core/services/category/category.service';
 
 @Component({
   selector: 'app-subcategories',
@@ -13,26 +15,29 @@ import { SubcategoryCreationRequest } from '../../core/models/subcategory/subcat
 })
 export class SubcategoriesComponent {
   protected subcategories: SubcategoryResponse[] = [] as SubcategoryResponse[];
-  first = 0;
-  rows = 5;
-  searchValue: string | undefined;
+  protected categories: any = [];
+  protected first = 0;
+  protected rows = 5;
+  protected searchValue: string | undefined;
+  protected selectedCategoryId: string = '';
+
   public visible: boolean = false;
   public editVisible: boolean = false;
   public newSubcategory = new FormGroup({
     name: new FormControl(),
     picture: new FormControl(),
-    cat_id: new FormControl(),
+    selectedCategory: new FormControl(),
   });
-
   public editSubcategory = new FormGroup({
     id: new FormControl(),
     name: new FormControl(),
     picture: new FormControl(),
-    cat_id: new FormControl(),
+    selectedCategory: new FormControl(),
   });
   
   constructor(
     private subcategory: SubcategoryService,
+    private category: CategoryService,
     private messageService: MessageService,
   ) {}
 
@@ -45,10 +50,21 @@ export class SubcategoriesComponent {
       next:(d) => {
         this.subcategories = d.body.data;
       },
-      error:(e) => {
-        throw e;
+      error:() => {
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'An error has occured' });
       }
     })
+  }
+
+  getCategories() {
+    this.category.get().subscribe({
+      next: (d) => {
+        this.categories = d.body.data;
+      },
+      error: () => {
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'An error has occured' });
+      }
+    });
   }
 
   edit(subcategory: SubcategoryResponse) {
@@ -57,16 +73,20 @@ export class SubcategoriesComponent {
     this.editSubcategory.setValue({
       id: subcategory.subCategory_id,
       name: subcategory.subCategory_name,
-      picture: subcategory.category_picture,
-      cat_id: subcategory.category_id,
+      picture: subcategory.subCategory_picture,
+      selectedCategory: {
+        category_name: subcategory.category_name,
+        category_picture: subcategory.category_picture,
+        category_id: subcategory.category_id,
+      },
     });
   }
 
   saveCategory() {
-    let editRequest: SubcategoryUpdateRequest = {
-      category_id: this.editSubcategory.value.cat_id,
-      subCategory_picture: this.editSubcategory.value.picture,
+    let editRequest: any = { 
       subCategory_name: this.editSubcategory.value.name,
+      subCategory_picture: this.editSubcategory.value.picture,
+      category_id: this.editSubcategory.value.selectedCategory.category_id
     };
 
     this.subcategory.update(this.editSubcategory.value.id, editRequest).subscribe({
@@ -75,7 +95,8 @@ export class SubcategoriesComponent {
         this.getSubcategories();
         this.editVisible = false;
       },
-      error: () => {
+      error: (e) => {
+        throw e;
         this.messageService.add({ severity: 'error', summary: 'Error', detail: 'An error has occured' });
       }
     });
@@ -85,7 +106,7 @@ export class SubcategoriesComponent {
     let newSubcategory: SubcategoryCreationRequest = {
       subCategory_name: this.newSubcategory.value.name,
       subCategory_picture: this.newSubcategory.value.picture,
-      category_id: this.newSubcategory.value.cat_id,
+      category_id: this.newSubcategory.value.selectedCategory.category_id,
     };
 
     this.subcategory.create(newSubcategory).subscribe({
@@ -139,5 +160,6 @@ export class SubcategoriesComponent {
 
   ngOnInit(): void {
     this.getSubcategories();
+    this.getCategories();
   }
 }

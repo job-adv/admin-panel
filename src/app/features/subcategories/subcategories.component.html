@@ -2,8 +2,21 @@
 <p-dialog 
     header="New subcategory" 
     [modal]="true"
-    [(visible)]="visible" >
+    [(visible)]="visible"
+    [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
+    >
     <form [formGroup]="this.newSubcategory">
+        <div class="my-4">
+            <p-dropdown 
+            [options]="categories" 
+            formControlName="selectedCategory" 
+            optionLabel="category_name" 
+            [filter]="true"
+            filterBy="category_name"
+            placeholder="Select a category"
+            styleClass="w-full"
+            />
+        </div>
         <div class="my-4">
             <p-floatLabel>
                 <input pInputText id="name"formControlName="name"/>
@@ -16,14 +29,6 @@
                 <label for="picture">Subcategory picture link</label>
             </p-floatLabel>
         </div>
-        <div class="my-4">
-            <p-floatLabel>
-                <input pInputText id="icon" formControlName="cat_id"/>
-                <label for="icon">Category id</label>
-            </p-floatLabel>
-        </div>
-        
-        
         <div class="flex justify-content-between mt-4">
             <p-button label="Cancel" severity="danger" icon="pi pi-times" (onClick)="visible = false;"></p-button>
             <p-button label="Confirm" severity="success" icon="pi pi-check" (onClick)="createCategory()"></p-button>
@@ -37,6 +42,17 @@
     [(visible)]="editVisible" >
     <form [formGroup]="this.editSubcategory">
         <div class="my-4">
+            <p-dropdown 
+            [options]="categories" 
+            formControlName="selectedCategory" 
+            optionLabel="category_name" 
+            [filter]="true"
+            filterBy="category_name"
+            placeholder="Select a category"
+            styleClass="w-full"
+            />
+        </div>
+        <div class="my-4">
             <p-floatLabel>
                 <input pInputText id="name"formControlName="name"/>
                 <label for="name">Subcategory name</label>
@@ -48,14 +64,6 @@
                 <label for="picture">Subcategory picture link</label>
             </p-floatLabel>
         </div>
-        <div class="my-4">
-            <p-floatLabel>
-                <input pInputText id="icon" formControlName="cat_id"/>
-                <label for="icon">Category id</label>
-            </p-floatLabel>
-        </div>
-        
-        
         <div class="flex justify-content-between mt-4">
             <p-button label="Cancel" severity="danger" icon="pi pi-times" (onClick)="editVisible = false;"></p-button>
             <p-button label="Confirm" severity="success" icon="pi pi-check" (onClick)="saveCategory()"></p-button>
@@ -93,7 +101,7 @@
             <td><img class="image-container" src={{subcategory.subCategory_picture}} width="100" /></td>         
             <td>
                 <p-button icon="pi pi-pencil" severity="primary" styleClass="mr-2" (onClick)="edit(subcategory)"></p-button>
-                <p-button icon="pi pi-trash" severity="danger" (onClick)="deleteCategory(subcategory.subcategory_id)"></p-button>
+                <p-button icon="pi pi-trash" severity="danger" (onClick)="deleteCategory(subcategory.subCategory_id)"></p-button>
             </td>
         </tr>
     </ng-template>
