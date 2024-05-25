@@ -31,17 +31,20 @@
             <td>{{ user.firstname }}</td>
             <td>{{ user.lastname }}</td>
             <td>{{ user.email }}</td>
-            <td><p-badge [value]="user.verifier === 0 ? 'Unverified' : 'Verified'" [severity]="user.verifier === 0 ? 'danger' : 'success'"></p-badge></td>
+            <td><p-badge *ngIf="user.role != 'customer'" [value]="user.verifier === 0 ? 'Unverified' : 'Verified'" [severity]="user.verifier === 0 ? 'danger' : 'success'"></p-badge></td>
             <td>
                 <a *ngIf="user.cv" href={{user.cv}} class="p-button font-bold no-underline">
                     <i class="pi pi-download mr-2"></i>Download
                 </a>
-                <h5 *ngIf="!user.cv" class="text-red-600">
-                    Not uploaded yet
+                <h5 *ngIf="user.role != 'customer'">
+                    <h5 *ngIf="!user.cv" class="text-red-600">
+                        Not uploaded yet
+                    </h5>
                 </h5>
+                
             </td>
             <td>
-                <p-button *ngIf="user.verifier === 0" icon="pi pi-check" severity="success" styleClass="mr-2" (onClick)="verify(user.user_id)" [loading]="isLoading"></p-button>
+                <p-button *ngIf="user.role != 'customer' && user.verifier === 0" icon="pi pi-check" severity="success" styleClass="mr-2" (onClick)="verify(user.user_id)" [loading]="isLoading"></p-button>
                 <p-button icon="pi pi-trash" severity="danger" (onClick)="deleteUser(user.user_id)"></p-button>
             </td>
         </tr>

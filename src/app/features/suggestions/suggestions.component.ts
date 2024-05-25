@@ -41,30 +41,30 @@ export class SuggestionsComponent {
     });
   }
 
-    next() {
-        this.first = this.first + this.rows;
-    }
+  next() {
+    this.first = this.first + this.rows;
+  }
 
-    prev() {
-        this.first = this.first - this.rows;
-    }
+  prev() {
+    this.first = this.first - this.rows;
+  }
 
-    reset() {
-        this.first = 0;
-    }
+  reset() {
+    this.first = 0;
+  }
 
-    pageChange(event: { first: number; rows: number; }) {
-        this.first = event.first;
-        this.rows = event.rows;
-    }
+  pageChange(event: { first: number; rows: number; }) {
+    this.first = event.first;
+    this.rows = event.rows;
+  }
 
-    isLastPage(): boolean {
-        return this.suggestions ? this.first === this.suggestions.length - this.rows : true;
-    }
+  isLastPage(): boolean {
+    return this.suggestions ? this.first === this.suggestions.length - this.rows : true;
+  }
 
-    isFirstPage(): boolean {
-        return this.suggestions ? this.first === 0 : true;
-    }
+  isFirstPage(): boolean {
+    return this.suggestions ? this.first === 0 : true;
+  }
 
   ngOnInit(): void {
     this.getSuggestions();
